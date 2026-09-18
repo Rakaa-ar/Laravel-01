@@ -18,6 +18,26 @@ class BarangController extends Controller
         return view('inventori.tambah');
     }
 
+    public function edit($id)
+    {
+        $barang = Barang::findOrFail($id);
+
+        return view('inventori.edit', compact('barang'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $barang = Barang::findOrfail($id);
+
+        $barang->update([
+            'nama_barang' => $request->nama_barang,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+        ]);
+
+        return redirect('/inventori');
+    }
+
     public function store(Request $request)
     {
         Barang::create([

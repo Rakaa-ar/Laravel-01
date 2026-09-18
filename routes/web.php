@@ -9,9 +9,11 @@ Route::get('/', function () {
 
 Route::get('/inventori', [BarangController::class, 'index']);
 
-Route::get('/inventori/barang', [BarangController::class, 'barang']);
-
 Route::get('/inventori/tambah', [BarangController::class, 'create']);
 
 Route::post('/inventori/tambah',[BarangController::class, 'store']);
+
+Route::get('/inventori/edit/{id}', [BarangController::class, 'edit']);
+
+Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
