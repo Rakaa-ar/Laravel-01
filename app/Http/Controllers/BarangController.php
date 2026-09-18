@@ -48,13 +48,19 @@ class BarangController extends Controller
     }
 
     public function store(Request $request)
-    {
-        Barang::create([
-            'nama_barang' => $request->nama_barang,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-        ]);
+{
+    $request->validate([
+        'nama_barang' => 'required',
+        'harga' => 'required|numeric',
+        'stok' => 'required|numeric',
+    ]);
 
-        return redirect('/inventori');
-    }
+    Barang::create([
+        'nama_barang' => $request->nama_barang,
+        'harga' => $request->harga,
+        'stok' => $request->stok,
+    ]);
+
+    return redirect('/inventori');
+}
 }

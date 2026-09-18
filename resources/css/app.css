@@ -22,3 +22,125 @@
 .btn:hover {
     transform: translateY(-2px);
 }
+
+/*=========================
+DARK THEME INVENTORI
+========================= */
+
+body {
+    background-color: #020817;
+    color: #f8fafc;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0f172a !important;
+    border-bottom: 1px solid #1e293b;
+}
+
+.navbar-brand,
+.navbar .nav-link {
+    color: #f8fafc !important;
+}
+
+.navbar .nav-link:hover {
+    color: #818cf8 !important;
+}
+
+/* Container */
+.container {
+    color: #f8fafc;
+}
+
+/* Card */
+.card {
+    background-color: #0f172a;
+    border: 1px solid #1e293b !important;
+    color: #f8fafc;
+    border-radius: 12px;
+}
+
+/* Judul */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #f8fafc;
+}
+
+/* Text muted */
+.text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Form */
+.form-label {
+    color: #e2e8f0;
+}
+
+.form-control {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+}
+
+.form-control:focus {
+    background-color: #1e293b;
+    border-color: #818cf8;
+    color: #f8fafc;
+    box-shadow: 0 0 0 0.2rem rgba(129, 140, 248, 0.15);
+}
+
+.form-control::placeholder {
+    color: #64748b;
+}
+
+/* Table */
+.table {
+    color: #e2e8f0;
+}
+
+.table thead th {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border-color: #334155;
+}
+
+.table tbody td {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    border-color: #1e293b;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+}
+
+.dropdown-item {
+    color: #e2e8f0;
+}
+
+.dropdown-item:hover {
+    background-color: #1e293b;
+    color: #818cf8;
+}
+
+/* Button */
+.btn-primary {
+    background-color: #6366f1;
+    border-color: #6366f1;
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+}
+
+/* Footer */
+footer {
+    color: #64748b;
+}
