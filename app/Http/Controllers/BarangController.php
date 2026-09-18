@@ -12,7 +12,7 @@ class BarangController extends Controller
         $barangs = Barang::all();
 
         return view('inventori.barang', compact('barangs'));
-    }   
+    }
     public function create()
     {
         return view('inventori.tambah');
@@ -27,13 +27,22 @@ class BarangController extends Controller
 
     public function update(Request $request, $id)
     {
-        $barang = Barang::findOrfail($id);
+        $barang = Barang::findOrFail($id);
 
         $barang->update([
             'nama_barang' => $request->nama_barang,
             'harga' => $request->harga,
             'stok' => $request->stok,
         ]);
+
+        return redirect('/inventori');
+    }
+
+    public function destroy($id)
+    {
+        $barang = Barang::findOrFail($id);
+
+        $barang->delete();
 
         return redirect('/inventori');
     }

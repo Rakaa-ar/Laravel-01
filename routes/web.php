@@ -17,3 +17,5 @@ Route::get('/inventori/edit/{id}', [BarangController::class, 'edit']);
 
 Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
+Route::delete('/inventori/delete/{id}', [BarangController::class, 'destroy']);  
+

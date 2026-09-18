@@ -37,6 +37,13 @@
                             <a href="/inventori/edit/{{ $item->id }}" class="btn btn-warning btn-sm">
                                 Edit
                             </a>
+                            <form action="/inventori/delete/{{ $item->id }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Hapus
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
