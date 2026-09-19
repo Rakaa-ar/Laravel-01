@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return 'Sistem Inventori Gudang';
@@ -18,4 +19,12 @@ Route::get('/inventori/edit/{id}', [BarangController::class, 'edit']);
 Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
 Route::delete('/inventori/delete/{id}', [BarangController::class, 'destroy']);  
+
+////PEMBATAS CRUD//////
+
+Route::get('/supplier', [SupplierController::class, 'index']);
+
+Route::get('/supplier/tambah', [SupplierController::class, 'create']);
+
+Route::post('/supplier/tambah', [SupplierController::class, 'store']);
 

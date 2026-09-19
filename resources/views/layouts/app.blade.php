@@ -35,7 +35,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/inventori/barang">
+                        <a class="nav-link" href="/inventori">
                             Data Barang
                         </a>
                     </li>
@@ -47,7 +47,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/supplier">
                                   <i class="bi bi-truck me-2"></i>
                                     Supplier
                                 </a>
