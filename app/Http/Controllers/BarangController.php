@@ -18,6 +18,23 @@ class BarangController extends Controller
         return view('inventori.tambah');
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+        ]);
+
+        Barang::create([
+            'nama_barang' => $request->nama_barang,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+        ]);
+
+        return redirect('/inventori')->with('success', 'Barang berhasil ditambahkan!');
+    }
+
     public function edit($id)
     {
         $barang = Barang::findOrFail($id);
@@ -35,7 +52,7 @@ class BarangController extends Controller
             'stok' => $request->stok,
         ]);
 
-        return redirect('/inventori');
+        return redirect('/inventori')->with('success', 'Barang berhasil diperbarui!');
     }
 
     public function destroy($id)
@@ -44,23 +61,6 @@ class BarangController extends Controller
 
         $barang->delete();
 
-        return redirect('/inventori');
+        return redirect('/inventori')->with('success', 'Barang berhasil dihapus!');
     }
-
-    public function store(Request $request)
-{
-    $request->validate([
-        'nama_barang' => 'required',
-        'harga' => 'required|numeric',
-        'stok' => 'required|numeric',
-    ]);
-
-    Barang::create([
-        'nama_barang' => $request->nama_barang,
-        'harga' => $request->harga,
-        'stok' => $request->stok,
-    ]);
-
-    return redirect('/inventori');
-}
 }
