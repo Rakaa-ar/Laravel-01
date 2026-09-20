@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BarangMasuk;
 
 class Supplier extends Model
 {
@@ -12,4 +13,9 @@ class Supplier extends Model
         'no_telepon',
         'alamat',
     ];
+
+    public function barangMasuks()
+    {
+        return $this->hasMany(BarangMasuk::class);
+    }
 }

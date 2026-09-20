@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Data Barang')
+@section('title', 'Barang Masuk')
 
 @section('content')
 
@@ -23,107 +23,96 @@
                 }, 3000);
             </script>
         @endif
-    
+
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
+
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h2 class="mb-1">Data Barang</h2>
+                        <h2 class="mb-1">Data Barang Masuk</h2>
                         <p class="text-muted mb-0">
-                            Kelola data barang inventori gudang
+                            Kelola data barang masuk gudang
                         </p>
                     </div>
 
-                    <a href="/inventori/tambah" class="btn btn-primary">
-                        + Tambah Barang
+                    <a href="/barang-masuk/tambah" class="btn btn-primary">
+                        + Tambah Barang Masuk
                     </a>
                 </div>
 
                 <div class="table-responsive">
+
                     <table class="table table-hover align-middle mb-0">
 
-                        <thead class="table-light">
+                        <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode</th>
                                 <th>Nama Barang</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th class="text-center">Aksi</th>
+                                <th>Supplier</th>
+                                <th>Jumlah</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            @foreach ($barangs as $item)
+                            @forelse ($barangMasuks as $barangMasuk)
                                 <tr>
-
                                     <td>{{ $loop->iteration }}</td>
 
                                     <td>
-                                        <span class="badge text-bg-secondary">
-                                            BRG-{{ str_pad($item->id, 3, '0', STR_PAD_LEFT) }}
-                                        </span>
+                                        {{ $barangMasuk->barang->nama_barang }}
                                     </td>
 
                                     <td>
-                                        <strong>{{ $item->nama_barang }}</strong>
+                                        {{ $barangMasuk->supplier->nama_supplier }}
                                     </td>
 
                                     <td>
-                                        Rp {{ number_format($item->harga, 0, ',', '.') }}
+                                        {{ $barangMasuk->jumlah }}
                                     </td>
 
                                     <td>
-                                        {{ $item->stok }}
+                                        {{ $barangMasuk->tanggal_masuk }}
                                     </td>
 
-                                    <td class="text-center">
-
-                                        <a href="/inventori/edit/{{ $item->id }}" class="btn btn-warning btn-sm">
+                                    <td>
+                                        <a href="/barang-masuk/edit/{{ $barangMasuk->id }}" class="btn btn-sm btn-warning">
                                             Edit
                                         </a>
 
-                                        <form action="/inventori/delete/{{ $item->id }}" method="POST"
+                                        <form action="/barang-masuk/delete/{{ $barangMasuk->id }}" method="POST"
                                             class="d-inline">
-
                                             @csrf
                                             @method('DELETE')
 
-                                            <button type="submit" class="btn btn-danger btn-sm btn-hapus">
+                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Yakin ingin menghapus barang masuk ini?')">
                                                 Hapus
                                             </button>
-
                                         </form>
-
                                     </td>
-
                                 </tr>
-                            @endforeach
+
+                            @empty
+
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        Belum ada data barang masuk.
+                                    </td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
 
                     </table>
+
                 </div>
 
             </div>
-
         </div>
 
     </div>
-
-    <script>
-        const tombolHapus = document.querySelectorAll('.btn-hapus');
-
-        tombolHapus.forEach(function(button) {
-            button.addEventListener('click', function(event) {
-                const yakin = confirm('Yakin ingin menghapus barang ini?');
-
-                if (!yakin) {
-                    event.preventDefault();
-                }
-            });
-        });
-    </script>
 
 @endsection

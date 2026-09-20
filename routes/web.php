@@ -20,7 +20,7 @@ Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
 Route::delete('/inventori/delete/{id}', [BarangController::class, 'destroy']);  
 
-////PEMBATAS CRUD//////
+////PEMBATAS CRUD\\\\
 
 Route::get('/supplier', [SupplierController::class, 'index']);
 
@@ -34,3 +34,18 @@ Route::post('/supplier/update/{id}', [SupplierController::class, 'update']);
 
 Route::delete('/supplier/delete/{id}', [SupplierController::class, 'destroy']);
 
+////PEMBATAS\\\\\
+
+use App\Http\Controllers\BarangMasukController;
+
+Route::get('/barang-masuk', [BarangMasukController::class, 'index']);
+
+Route::get('/barang-masuk/tambah', [BarangMasukController::class, 'create']);
+
+Route::post('/barang-masuk/tambah', [BarangMasukController::class, 'store']);
+
+Route::get('/barang-masuk/edit/{id}', [BarangMasukController::class, 'edit']);
+
+Route::post('/barang-masuk/edit/{id}', [BarangMasukController::class, 'update']);
+
+Route::delete('/barang-masuk/delete/{id}', [BarangMasukController::class, 'destroy']);

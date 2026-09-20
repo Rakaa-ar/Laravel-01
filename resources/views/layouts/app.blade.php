@@ -7,8 +7,7 @@
     <title>@yield('title', 'Inventori Gudang')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -48,21 +47,21 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <a class="dropdown-item" href="/supplier">
-                                  <i class="bi bi-truck me-2"></i>
+                                    <i class="bi bi-truck me-2"></i>
                                     Supplier
                                 </a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="#">
-                                  <i class="bi bi-box-arrow-in-down me-2"></i>
+                                <a class="dropdown-item" href="/barang-masuk">
+                                    <i class="bi bi-box-arrow-in-down me-2"></i>
                                     Barang Masuk
                                 </a>
                             </li>
 
                             <li>
                                 <a class="dropdown-item" href="#">
-                                  <i class="bi bi-box-arrow-up me-2"></i>
+                                    <i class="bi bi-box-arrow-up me-2"></i>
                                     Barang Keluar
                                 </a>
                             </li>
