@@ -28,3 +28,9 @@ Route::get('/supplier/tambah', [SupplierController::class, 'create']);
 
 Route::post('/supplier/tambah', [SupplierController::class, 'store']);
 
+Route::get('/supplier/edit/{id}', [SupplierController::class, 'edit']);
+
+Route::post('/supplier/update/{id}', [SupplierController::class, 'update']);
+
+Route::delete('/supplier/delete/{id}', [SupplierController::class, 'destroy']);
+

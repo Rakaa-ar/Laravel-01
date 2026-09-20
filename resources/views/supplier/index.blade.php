@@ -5,6 +5,24 @@
 @section('content')
 
     <div class="container mt-4">
+      
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+
+                <button type="button" class="btn-close" data-bs-dismiss="alert">
+                </button>
+            </div>
+
+            <script>
+                setTimeout(function() {
+                    const alert = document.querySelector('.alert');
+                    if (alert) {
+                        alert.remove();
+                    }
+                }, 3000);
+            </script>
+        @endif
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Data Supplier</h1>
@@ -57,16 +75,19 @@
 
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="/supplier/edit/{{ $supplier->id }}">
                                                 ✏️ Edit
                                             </a>
                                         </li>
 
-                                        <li>
-                                            <a class="dropdown-item" href="#">
+                                        <form action="/supplier/delete/{{ $supplier->id }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="dropdown-item">
                                                 🗑️ Hapus
-                                            </a>
-                                        </li>
+                                            </button>
+                                        </form>
                                     </ul>
                                 </div>
                             </td>
@@ -78,5 +99,4 @@
         </div>
 
     </div>
-
 @endsection
