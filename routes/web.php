@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\KategoriController;
+
 
 Route::get('/', function () {
     return 'Sistem Inventori Gudang';
@@ -20,7 +23,7 @@ Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
 Route::delete('/inventori/delete/{id}', [BarangController::class, 'destroy']);  
 
-////PEMBATAS CRUD\\\\
+////PEMBATAS SUPPLIERS CRUD\\\\
 
 Route::get('/supplier', [SupplierController::class, 'index']);
 
@@ -34,9 +37,7 @@ Route::post('/supplier/update/{id}', [SupplierController::class, 'update']);
 
 Route::delete('/supplier/delete/{id}', [SupplierController::class, 'destroy']);
 
-////PEMBATAS\\\\\
-
-use App\Http\Controllers\BarangMasukController;
+////PEMBATAS BARANG MASUK\\\\\
 
 Route::get('/barang-masuk', [BarangMasukController::class, 'index']);
 
@@ -49,3 +50,7 @@ Route::get('/barang-masuk/edit/{id}', [BarangMasukController::class, 'edit']);
 Route::post('/barang-masuk/edit/{id}', [BarangMasukController::class, 'update']);
 
 Route::delete('/barang-masuk/delete/{id}', [BarangMasukController::class, 'destroy']);
+
+////PEMBATAS KATEGORI\\\
+
+Route::get('/kategori', [KategoriController::class, 'index']);

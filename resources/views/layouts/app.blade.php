@@ -53,6 +53,13 @@
                             </li>
 
                             <li>
+                                <a class="dropdown-item" href="/kategori">
+                                    <i class="bi bi-tags me-2"></i>
+                                    Kategori
+                                </a>
+                            </li>
+
+                            <li>
                                 <a class="dropdown-item" href="/barang-masuk">
                                     <i class="bi bi-box-arrow-in-down me-2"></i>
                                     Barang Masuk

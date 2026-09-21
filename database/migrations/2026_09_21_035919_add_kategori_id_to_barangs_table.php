@@ -9,26 +9,22 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('barangs', function (Blueprint $table) {
-
-            $table->id();
-
+        Schema::table('barangs', function (Blueprint $table) {
             $table->foreignId('kategori_id')
+                ->nullable()
                 ->constrained('kategoris')
-                ->onDelete('cascade');
-
-
-            $table->string('nama_barang');
-            $table->integer('harga');
-            $table->integer('stok');
-            
-            $table->timestamps();
+                ->onDELETE('cascade');
         });
     }
 
-
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('barangs');
+        Schema::table('barangs', function (Blueprint $table) {
+            $table->dropForeign(['kategori_id']);
+            $table->dropColumn('kategori_id');
+        });
     }
 };
