@@ -54,3 +54,13 @@ Route::delete('/barang-masuk/delete/{id}', [BarangMasukController::class, 'destr
 ////PEMBATAS KATEGORI\\\
 
 Route::get('/kategori', [KategoriController::class, 'index']);
+
+Route::get('/kategori/tambah', [KategoriController::class, 'create']);
+
+Route::post('/kategori/tambah', [KategoriController::class, 'store']);
+
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']); 
+
+Route::put('/kategori/edit/{id}', [KategoriController::class, 'update']);
+
+Route::delete('/kategori/hapus/{id}', [KategoriController::class, 'destroy']);
