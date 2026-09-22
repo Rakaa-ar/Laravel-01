@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 
@@ -10,13 +11,15 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $barangs = Barang::all();
+        $barangs = Barang::paginate(5);
 
         return view('inventori.barang', compact('barangs'));
     }
     public function create()
     {
-        return view('inventori.tambah');
+        $kategoris = Kategori::all();
+
+        return view('inventori.tambah', compact('kategoris'));
     }
 
     public function store(Request $request)
@@ -31,6 +34,7 @@ class BarangController extends Controller
             'nama_barang' => $request->nama_barang,
             'harga' => $request->harga,
             'stok' => $request->stok,
+            'kategori_id' => $request->kategori_id,
         ]);
 
         return redirect('/inventori')->with('success', 'Barang berhasil ditambahkan!');
@@ -40,7 +44,9 @@ class BarangController extends Controller
     {
         $barang = Barang::findOrFail($id);
 
-        return view('inventori.edit', compact('barang'));
+        $kategoris = Kategori::all();
+
+        return view('inventori.edit', compact('barang', 'kategoris'));
     }
 
     public function update(Request $request, $id)
@@ -51,6 +57,7 @@ class BarangController extends Controller
             'nama_barang' => $request->nama_barang,
             'harga' => $request->harga,
             'stok' => $request->stok,
+            'kategori_id' => $request->kategori_id,
         ]);
 
         return redirect('/inventori')->with('success', 'Barang berhasil diperbarui!');

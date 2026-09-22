@@ -23,7 +23,7 @@
                 }, 3000);
             </script>
         @endif
-    
+
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -47,6 +47,7 @@
                                 <th>No</th>
                                 <th>Kode</th>
                                 <th>Nama Barang</th>
+                                <th>Kategori</th>
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th class="text-center">Aksi</th>
@@ -57,23 +58,21 @@
 
                             @foreach ($barangs as $item)
                                 <tr>
-
                                     <td>{{ $loop->iteration }}</td>
-
                                     <td>
                                         <span class="badge text-bg-secondary">
                                             BRG-{{ str_pad($item->id, 3, '0', STR_PAD_LEFT) }}
                                         </span>
                                     </td>
-
                                     <td>
                                         <strong>{{ $item->nama_barang }}</strong>
                                     </td>
-
+                                    <td>
+                                        {{ $item->kategori->nama_kategori ?? '-' }}
+                                    </td>
                                     <td>
                                         Rp {{ number_format($item->harga, 0, ',', '.') }}
                                     </td>
-
                                     <td>
                                         {{ $item->stok }}
                                     </td>
@@ -104,6 +103,9 @@
                         </tbody>
 
                     </table>
+                    <div class="mt-4">
+                        {{ $barangs->links() }}
+                    </div>
                 </div>
 
             </div>

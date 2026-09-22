@@ -141,3 +141,32 @@ h6 {
 footer {
     color: #64748b;
 }
+
+/* Pagination */
+.pagination {
+    margin-bottom: 0;
+}
+
+.pagination .page-link {
+    background-color: #111a2e;
+    border-color: #26324a;
+    color: #ffffff;
+}
+
+.pagination .page-link:hover {
+    background-color: #1c2942;
+    border-color: #34415c;
+    color: #ffffff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #6366f1;
+    border-color: #6366f1;
+    color: #ffffff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #0f172a;
+    border-color: #26324a;
+    color: #6b7280;
+}

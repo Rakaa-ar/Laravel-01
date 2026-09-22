@@ -30,6 +30,21 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+
+                        <select name="kategori_id" class="form-select">
+                            <option value="">-- Pilih Kategori --</option>
+
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}"
+                                    {{ $barang->kategori_id == $kategori->id ? 'selected' : '' }}>
+                                    {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="harga" class="form-label">
                             Harga
                         </label>

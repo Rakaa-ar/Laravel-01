@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Barang;
 
 class Kategori extends Model
 {
@@ -14,4 +15,6 @@ class Kategori extends Model
     {
         return $this->hasMany(Barang::class);
     }
+
+    
 }

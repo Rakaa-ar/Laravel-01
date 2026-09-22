@@ -12,6 +12,7 @@ class Barang extends Model
         'nama_barang',
         'harga',
         'stok',
+        'kategori_id',
     ];
     public function barangMasuks()
     {

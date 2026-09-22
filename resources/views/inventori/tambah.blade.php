@@ -36,16 +36,27 @@
                         <label for="nama_barang" class="form-label">
                             Nama Barang
                         </label>
-
                         <input type="text" name="nama_barang" id="nama_barang" class="form-control"
                             placeholder="Contoh: Laptop">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+
+                        <select name="kategori_id" class="form-select">
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach ($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}">
+                                    {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="harga" class="form-label">
                             Harga
                         </label>
-
                         <input type="text" name="harga" id="harga" class="form-control" placeholder="Rp 0">
                     </div>
 
@@ -53,7 +64,6 @@
                         <label for="stok" class="form-label">
                             Stok
                         </label>
-
                         <input type="number" name="stok" id="stok" class="form-control" placeholder="Contoh: 10">
                     </div>
 
