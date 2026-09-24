@@ -5,9 +5,11 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SatuanController;
 
 
 Route::get('/', function () {
+
     return 'Sistem Inventori Gudang';
 });
 
@@ -64,3 +66,15 @@ Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']);
 Route::put('/kategori/edit/{id}', [KategoriController::class, 'update']);
 
 Route::delete('/kategori/hapus/{id}', [KategoriController::class, 'destroy']);
+
+//// PEMBATAS \\\\\\
+
+Route::get('/satuan', [SatuanController::class, 'index']);
+
+Route::get('/satuan/tambah', [SatuanController::class, 'create']);
+
+Route::post('/satuan/tambah', [SatuanController::class, 'store']);
+
+Route::get('/satuan/edit/{id}', [SatuanController::class, 'edit']);
+
+Route::put('/satuan/edit/{id}', [SatuanController::class, 'update']);

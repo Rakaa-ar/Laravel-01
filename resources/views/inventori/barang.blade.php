@@ -48,6 +48,7 @@
                                 <th>Kode</th>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
+                                <th>Satuan</th>
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th class="text-center">Aksi</th>
@@ -69,6 +70,9 @@
                                     </td>
                                     <td>
                                         {{ $item->kategori->nama_kategori ?? '-' }}
+                                    </td>
+                                    <td>
+                                        {{ $item->satuan->nama_satuan ?? '-' }}
                                     </td>
                                     <td>
                                         Rp {{ number_format($item->harga, 0, ',', '.') }}

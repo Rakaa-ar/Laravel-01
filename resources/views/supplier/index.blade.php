@@ -96,6 +96,8 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-4">
+                    {{ $suppliers->onEachSide(2)->links() }}
         </div>
 
     </div>

@@ -60,6 +60,13 @@
                             </li>
 
                             <li>
+                                <a class="dropdown-item" href="/satuan">
+                                    <i class="bi bi-rulers me-2"></i>
+                                    Satuan
+                                </a>
+                            </li>
+
+                            <li>
                                 <a class="dropdown-item" href="/barang-masuk">
                                     <i class="bi bi-box-arrow-in-down me-2"></i>
                                     Barang Masuk
@@ -87,6 +94,12 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <footer class="text-center py-5 mt-5">
+        <small class="text-muted">
+            © 2026 Sistem Inventori Gudang · Dibuat oleh Raka
+        </small>
+    </footer>
+    
 </body>
 
 </html>

@@ -36,8 +36,7 @@
                         <label for="nama_barang" class="form-label">
                             Nama Barang
                         </label>
-                        <input type="text" name="nama_barang" id="nama_barang" class="form-control"
-                            placeholder="Contoh: Laptop">
+                        <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="...">
                     </div>
 
                     <div class="mb-3">
@@ -48,6 +47,20 @@
                             @foreach ($kategoris as $kategori)
                                 <option value="{{ $kategori->id }}">
                                     {{ $kategori->nama_kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="satuan_id" class="form-label">Satuan</label>
+
+                        <select name="satuan_id" id="satuan_id" class="form-select">
+                            <option value="">-- Pilih Satuan --</option>
+
+                            @foreach ($satuans as $satuan)
+                                <option value="{{ $satuan->id }}">
+                                    {{ $satuan->nama_satuan }}
                                 </option>
                             @endforeach
                         </select>

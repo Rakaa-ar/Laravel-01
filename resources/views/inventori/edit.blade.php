@@ -45,6 +45,21 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Satuan</label>
+
+                        <select name="satuan_id" class="form-select">
+                            <option value="">-- Pilih Satuan --</option>
+
+                            @foreach ($satuans as $satuan)
+                                <option value="{{ $satuan->id }}"
+                                    {{ $barang->satuan_id == $satuan->id ? 'selected' : '' }}>
+                                    {{ $satuan->nama_satuan }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="harga" class="form-label">
                             Harga
                         </label>

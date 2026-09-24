@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Kategori;
+use App\Models\Satuan;
 use Illuminate\Http\Request;
 
 
@@ -18,8 +19,9 @@ class BarangController extends Controller
     public function create()
     {
         $kategoris = Kategori::all();
+        $satuans = Satuan::all();
 
-        return view('inventori.tambah', compact('kategoris'));
+        return view('inventori.tambah', compact('kategoris', 'satuans'));
     }
 
     public function store(Request $request)
@@ -35,6 +37,7 @@ class BarangController extends Controller
             'harga' => $request->harga,
             'stok' => $request->stok,
             'kategori_id' => $request->kategori_id,
+            'satuan_id' => $request->satuan_id,
         ]);
 
         return redirect('/inventori')->with('success', 'Barang berhasil ditambahkan!');
@@ -46,7 +49,9 @@ class BarangController extends Controller
 
         $kategoris = Kategori::all();
 
-        return view('inventori.edit', compact('barang', 'kategoris'));
+        $satuans = Satuan::all();
+
+        return view('inventori.edit', compact('barang', 'kategoris', 'satuans'));
     }
 
     public function update(Request $request, $id)
@@ -58,6 +63,7 @@ class BarangController extends Controller
             'harga' => $request->harga,
             'stok' => $request->stok,
             'kategori_id' => $request->kategori_id,
+            'satuan_id' => $request->satuan_id,
         ]);
 
         return redirect('/inventori')->with('success', 'Barang berhasil diperbarui!');
@@ -71,4 +77,5 @@ class BarangController extends Controller
 
         return redirect('/inventori')->with('success', 'Barang berhasil dihapus!');
     }
+    
 }
