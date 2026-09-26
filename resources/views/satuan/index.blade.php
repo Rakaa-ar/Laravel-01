@@ -13,7 +13,7 @@
                 <a href="/satuan/tambah" class="btn btn-primary mb-3">
                     + Tambah Satuan
                 </a>
-                  
+                
                     <table class="table table-dark table-hover align-middle">
 
                         <thead>

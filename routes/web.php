@@ -6,6 +6,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\GudangController;
 
 
 Route::get('/', function () {
@@ -78,3 +79,19 @@ Route::post('/satuan/tambah', [SatuanController::class, 'store']);
 Route::get('/satuan/edit/{id}', [SatuanController::class, 'edit']);
 
 Route::put('/satuan/edit/{id}', [SatuanController::class, 'update']);
+
+Route::delete('/satuan/hapus/{id}', [SatuanController::class, 'destroy']);
+
+/////PEMBATAS\\\\\\
+
+Route::get('gudang', [GudangController::class, 'index' ]);
+
+Route::get('/gudang/tambah', [GudangController::class, 'create']);
+
+Route::post('/gudang/tambah', [GudangController::class, 'store']);
+
+Route::get('/gudang/edit/{id}', [GudangController::class, 'edit']);
+
+Route::put('/gudang/edit/{id}', [GudangController::class, 'update']);
+
+Route::delete('/gudang/delete/{id}', [GudangController::class, 'destroy']);

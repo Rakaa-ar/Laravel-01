@@ -55,5 +55,14 @@ class SatuanController extends Controller
         ]);
 
         return redirect('/satuan')->with('success','Satuan Berhasil di Perbarui');
+    } 
+
+    public function destroy($id)
+    {
+        $satuan = Satuan::findOrFail($id);
+
+        $satuan->delete($id);
+
+        return redirect('/satuan')->with('success', 'Data Satuan Berhasil Di Hapus');
     }
 }
