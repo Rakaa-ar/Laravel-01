@@ -80,7 +80,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/barang-keluar">
                                     <i class="bi bi-box-arrow-up me-2"></i>
                                     Barang Keluar
                                 </a>

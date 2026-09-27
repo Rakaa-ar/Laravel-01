@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gudang;
-use Illuminate\Pagination\Paginator;
-
 use function Pest\Laravel\delete;
 
 class GudangController extends Controller

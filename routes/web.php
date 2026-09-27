@@ -7,6 +7,7 @@ use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\GudangController;
+use App\Http\Controllers\BarangKeluarController;
 
 
 Route::get('/', function () {
@@ -95,3 +96,12 @@ Route::get('/gudang/edit/{id}', [GudangController::class, 'edit']);
 Route::put('/gudang/edit/{id}', [GudangController::class, 'update']);
 
 Route::delete('/gudang/delete/{id}', [GudangController::class, 'destroy']);
+
+////PEMBATAS\\\\\
+
+Route::get('/barang-keluar', [BarangKeluarController::class, 'index']);
+
+Route::get('/barang-keluar/tambah', [BarangKeluarController::class, 'create']);
+
+Route::post('/barang-keluar/tambah', [BarangKeluarController::class, 'store']);
+
