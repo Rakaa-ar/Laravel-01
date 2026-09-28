@@ -32,7 +32,7 @@
                 <textarea name="alamat" class="form-control" rows="4">{{ $supplier->alamat }}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="btnUpdate">
                 Simpan Perubahan
             </button>
 
@@ -41,7 +41,12 @@
             </a>
 
         </form>
-
+        <script>
+            document.querySelector('form').addEventListener('submit', function() {
+                document.getElementById('btnUpdate').disabled = true;
+                document.getElementById('btnUpdate').innerText = 'Menyimpan...';
+            });
+        </script>
     </div>
 
 @endsection

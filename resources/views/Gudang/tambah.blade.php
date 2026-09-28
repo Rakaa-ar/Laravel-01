@@ -24,7 +24,7 @@
                 <textarea name="alamat" id="alamat" class="form-control" rows="3" placeholder="Masukkan alamat gudang"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="btnSimpan">
                 Simpan
             </button>
 
@@ -32,7 +32,12 @@
                 Kembali
             </a>
         </form>
-
+        <script>
+            document.querySelector('form').addEventListener('submit', function() {
+                document.getElementById('btnSimpan').disabled = true;
+                document.getElementById('btnSimpan').innerText = 'Menyimpan...';
+            });
+        </script>
     </div>
 
 @endsection

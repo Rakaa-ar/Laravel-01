@@ -4,32 +4,34 @@
 
 @section('content')
 
-<div class="container mt-4">
+    <div class="container mt-4">
 
-    <h2 class="mb-4">Tambah Kategori</h2>
+        <h2 class="mb-4">Tambah Kategori</h2>
 
-    <form action="/kategori/tambah" method="POST">
-        @csrf
+        <form action="/kategori/tambah" method="POST">
+            @csrf
 
-        <div class="mb-3">
-            <label class="form-label">Nama Kategori</label>
+            <div class="mb-3">
+                <label class="form-label">Nama Kategori</label>
 
-            <input
-                type="text"
-                name="nama_kategori"
-                class="form-control"
-            >
-        </div>
+                <input type="text" name="nama_kategori" class="form-control">
+            </div>
 
-        <button type="submit" class="btn btn-primary">
-            Simpan
-        </button>
+            <button type="submit" class="btn btn-primary" id="btnSimpan">
+                Simpan
+            </button>
 
-        <a href="/kategori" class="btn btn-secondary">
-            Kembali
-        </a>
-    </form>
+            <a href="/kategori" class="btn btn-secondary">
+                Kembali
+            </a>
+        </form>
+        <script>
+            document.querySelector('form').addEventListener('submit', function() {
+                document.getElementById('btnSimpan').disabled = true;
+                document.getElementById('btnSimpan').innerText = 'Menyimpan...';
+            });
+        </script>
 
-</div>
+    </div>
 
 @endsection

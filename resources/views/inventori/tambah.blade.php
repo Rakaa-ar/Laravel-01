@@ -80,7 +80,7 @@
                         <input type="number" name="stok" id="stok" class="form-control" placeholder="Contoh: 10">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="btnSimpan">
                         Simpan Barang
                     </button>
 
@@ -89,6 +89,12 @@
                     </a>
 
                 </form>
+                <script>
+                    document.querySelector('form').addEventListener('submit', function() {
+                        document.getElementById('btnSimpan').disabled = true;
+                        document.getElementById('btnSimpan').innerText = 'Menyimpan...';
+                    });
+                </script>
 
             </div>
 

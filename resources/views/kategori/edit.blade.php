@@ -18,7 +18,7 @@
                 <input type="text" name="nama_kategori" class="form-control" value="{{ $kategori->nama_kategori }}">
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id=btnUpdate>
                 Simpan Perubahan
             </button>
 
@@ -26,6 +26,12 @@
                 Kembali
             </a>
         </form>
+        <script>
+            document.querySelector('form').addEventListener('submit', function() {
+                document.getElementById('btnUpdate').disabled = true;
+                document.getElementById('btnUpdate').innerText = 'Menyimpan...';
+            });
+        </script>
 
     </div>
 

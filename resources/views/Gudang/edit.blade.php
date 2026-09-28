@@ -24,17 +24,23 @@
                 </label>
                 <textarea name="alamat" id="alamat" class="form-control" rows="3">{{ $gudang->alamat }}</textarea>
 
-                </div>
+            </div>
 
-                <button type="submit" class="btn btn-primary">
-                    Simpan Perubahan
-                </button>
+            <button type="submit" class="btn btn-primary" id="btnUpdate">
+                Simpan Perubahan
+            </button>
 
-                <a href="/gudang" class="btn btn-secondary">
-                    Kembali
-                </a>
-            </form>
+            <a href="/gudang" class="btn btn-secondary">
+                Kembali
+            </a>
+        </form>
+        <script>
+            document.querySelector('form').addEventListener('submit', function() {
+                document.getElementById('btnUpdate').disabled = true;
+                document.getElementById('btnUpdate').innerText = 'Menyimpan...';
+            });
+        </script>
 
-        </div>
+    </div>
 
 @endsection

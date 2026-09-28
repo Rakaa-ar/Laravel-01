@@ -27,7 +27,7 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">
                         Update.
                     </button>
 
@@ -35,7 +35,12 @@
                     <a href="/satuan" class="btn btn-secondary">
                         Kembali</a>
                 </form>
-
+                <script>
+                    document.querySelector('form').addEventListener('submit', function() {
+                        document.getElementById('btnUpdate').disabled = true;
+                        document.getElementById('btnUpdate').innerText = 'Menyimpan...';
+                    });
+                </script>
             </div>
         </div>
 

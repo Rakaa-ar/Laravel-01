@@ -77,7 +77,7 @@
                             value="{{ $barang->stok }}">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">
                         Update Barang
                     </button>
 
@@ -86,6 +86,13 @@
                     </a>
 
                 </form>
+
+                <script>
+                    document.querySelector('form').addEventListener('submit', function() {
+                        document.getElementById('btnUpdate').disabled = true;
+                        document.getElementById('btnUpdate').innerText = 'Menyimpan...';
+                    });
+                </script>
 
             </div>
 

@@ -105,3 +105,10 @@ Route::get('/barang-keluar/tambah', [BarangKeluarController::class, 'create']);
 
 Route::post('/barang-keluar/tambah', [BarangKeluarController::class, 'store']);
 
+Route::get('/barang-keluar/edit/{id}', [BarangKeluarController::class, 'edit']); 
+
+Route::delete('/barang-keluar/delete/{id}', [BarangKeluarController::class, 'destroy']);
+
+
+
+
