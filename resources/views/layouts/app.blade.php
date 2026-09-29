@@ -35,14 +35,27 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="/inventori">
+                            <i class="bi bi-box"></i>
                             Data Barang
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/gudang">
-                            Gudang
+                        <a class="nav-link" href="/user">
+                            <i class="bi bi-people"></i>
+                            Data User
                         </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form action="/logout" method="POST">
+                            @csrf
+
+                            <button type="submit" class="nav-link border-0 bg-transparent">
+                                <i class="bi bi-box-arrow-right"></i>
+                                Logout
+                            </button>
+                        </form>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -66,27 +79,32 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="/satuan">
-                                    <i class="bi bi-rulers me-2"></i>
-                                    Satuan
+                                <a class="dropdown-item" href="/gudang">
+                                    <i class="bi bi-box-seam me-2"></i>
+                                    Gudang
                                 </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="/barang-masuk">
-                                    <i class="bi bi-box-arrow-in-down me-2"></i>
-                                    Barang Masuk
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item" href="/barang-keluar">
-                                    <i class="bi bi-box-arrow-up me-2"></i>
-                                    Barang Keluar
-                                </a>
-                            </li>
-                        </ul>
+                            </li <li>
+                            <a class="dropdown-item" href="/satuan">
+                                <i class="bi bi-rulers me-2"></i>
+                                Satuan
+                            </a>
                     </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/barang-masuk">
+                            <i class="bi bi-box-arrow-in-down me-2"></i>
+                            Barang Masuk
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="/barang-keluar">
+                            <i class="bi bi-box-arrow-up me-2"></i>
+                            Barang Keluar
+                        </a>
+                    </li>
+                </ul>
+                </li>
 
                 </ul>
 
@@ -105,7 +123,7 @@
             © 2026 Sistem Inventori Gudang · Dibuat oleh Raka
         </small>
     </footer>
-    
+
 </body>
 
 </html>

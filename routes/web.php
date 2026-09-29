@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangMasukController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -107,8 +109,19 @@ Route::post('/barang-keluar/tambah', [BarangKeluarController::class, 'store']);
 
 Route::get('/barang-keluar/edit/{id}', [BarangKeluarController::class, 'edit']); 
 
-Route::delete('/barang-keluar/delete/{id}', [BarangKeluarController::class, 'destroy']);
+Route::delete('/barang-keluar/delete/{id}', [BarangKeluarController::class, 'destroy']); 
 
+
+////PEMBATAS\\\\\\\
+
+Route::get('/user', [UserController::class, 'index']);
+//
+
+Route::get('/login', [AuthController::class, 'showLogin']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout']);
 
 
 
