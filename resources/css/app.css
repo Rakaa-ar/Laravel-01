@@ -25,14 +25,28 @@
 
 
 body {
-    background-color: #020817;
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 65%,
+            #102b5c 0%,
+            #07152e 25%,
+            #080808 65%
+        );
+
     color: #f8fafc;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #0f172a !important;
-    border-bottom: 1px solid #1e293b;
+    background: rgba(10, 10, 12, 0.82) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+    z-index: 1050;
 }
 
 .navbar-brand,
@@ -51,10 +65,17 @@ body {
 
 /* Card */
 .card {
-    background-color: #0f172a;
-    border: 1px solid #1e293b !important;
+    background: rgba(20, 20, 22, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     color: #f8fafc;
-    border-radius: 12px;
+    border-radius: 20px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 40px rgba(20, 100, 255, 0.08),
+        0 25px 60px rgba(0, 0, 0, 0.35);
 }
 
 /* Judul */
@@ -78,9 +99,22 @@ h6 {
 }
 
 .form-control {
-    background-color: #1e293b;
-    border: 1px solid #334155;
+    background: rgba(10, 10, 10, 0.70);
+    border: 1px solid #222;
     color: #f8fafc;
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    background: rgba(10, 10, 10, 0.80);
+    border-color: #287cff;
+    color: #f8fafc;
+
+    box-shadow: 0 0 10px rgba(40, 124, 255, 0.18);
+}
+
+.form-control::placeholder {
+    color: #666;
 }
 
 .form-control:focus {
@@ -100,15 +134,15 @@ h6 {
 }
 
 .table thead th {
-    background-color: #1e293b;
+    background: rgba(10, 10, 10, 0.55);
     color: #f8fafc;
-    border-color: #334155;
+    border-color: rgba(255, 255, 255, 0.10);
 }
 
 .table tbody td {
-    background-color: #0f172a;
+    background: rgba(20, 20, 22, 0.55);
     color: #e2e8f0;
-    border-color: #1e293b;
+    border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Dropdown */

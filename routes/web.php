@@ -123,5 +123,26 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
 
+Route::get('/register', function () {
+    return view('auth.register');
+});    
+
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/verify-otp', function(){
+    return view('auth.verify-otp');
+});
+
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
+
+//
+
+
+
+
+
+
+
 
 
