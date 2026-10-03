@@ -45,9 +45,21 @@
 
             </form>
 
+            @if (session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <div class="register-text">
                 Didn't receive the code?
-                <a href="#">Resend OTP</a>
+
+                <form action="/resend-otp" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="resend-button">
+                        Resend OTP
+                    </button>
+                </form>
             </div>
 
         </div>

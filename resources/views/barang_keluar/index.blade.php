@@ -78,7 +78,8 @@
                                     </td>
 
                                     <td>
-                                        <a href="/barang-keluar/edit/{{ $barangKeluar->id }}" class="btn btn-sm btn-warning">
+                                        <a href="/barang-keluar/edit/{{ $barangKeluar->id }}"
+                                            class="btn btn-sm btn-warning">
                                             Edit
                                         </a>
 
@@ -107,6 +108,9 @@
                         </tbody>
 
                     </table>
+                    <div class="mt-4">
+                        {{ $barangKeluars->links() }}
+                    </div>
 
                 </div>
 

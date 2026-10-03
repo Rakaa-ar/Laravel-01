@@ -59,6 +59,11 @@
                     Log in
                 </button>
             </form>
+        
+            <div class="register-text">
+                <a href="/forgot-password">Forgot Password?</a>
+            </div>
+            
             <div class="register-text">
                 Don't have an account?
                 <a href="/register">

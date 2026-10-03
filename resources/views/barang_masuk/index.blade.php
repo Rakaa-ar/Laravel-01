@@ -107,6 +107,9 @@
                         </tbody>
 
                     </table>
+                    <div class="mt-4">
+                        {{ $barangMasuks->links() }}
+                    </div>
 
                 </div>
 

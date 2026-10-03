@@ -12,11 +12,8 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-
-    return 'Sistem Inventori Gudang';
-});
-
+Route::middleware('auth')->group(function () {
+//semua route wajib login\\
 Route::get('/inventori', [BarangController::class, 'index']);
 
 Route::get('/inventori/tambah', [BarangController::class, 'create']);
@@ -28,6 +25,8 @@ Route::get('/inventori/edit/{id}', [BarangController::class, 'edit']);
 Route::post('/inventori/update/{id}', [BarangController::class, 'update']);
 
 Route::delete('/inventori/delete/{id}', [BarangController::class, 'destroy']);  
+
+
 
 ////PEMBATAS SUPPLIERS CRUD\\\\
 
@@ -115,9 +114,12 @@ Route::delete('/barang-keluar/delete/{id}', [BarangKeluarController::class, 'des
 ////PEMBATAS\\\\\\\
 
 Route::get('/user', [UserController::class, 'index']);
+
+});
+
 //
 
-Route::get('/login', [AuthController::class, 'showLogin']);
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -135,6 +137,15 @@ Route::get('/verify-otp', function(){
 });
 
 Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
+Route::post('/resend-otp', [AuthController::class, 'resendOtp']);
+//
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword']);
+Route::post('/forgot-password', [AuthController::class, 'sendPasswordResetOtp']);
+Route::get('/reset-password/verify', [AuthController::class, 'showResetPasswordOtp']);
+Route::post('/reset-password/verify', [AuthController::class, 'verifyResetPasswordOtp']);
+
+Route::get('/reset-password/new', [AuthController::class, 'showNewPasswordForm']);
+Route::post('/reset-password/new', [AuthController::class, 'ResetPassword']);
 
 //
 
