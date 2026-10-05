@@ -73,10 +73,32 @@
 
                         </div>
 
-                        <div>
-                            <button class="btn btn-light">
+                        <div class="dropdown">
+                            <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-three-dots-vertical"></i>
                             </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="/user/edit/{{ $user->id }}">
+                                        <i class="bi bi-pencil-square me-2"></i>
+                                        Edit
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <form action="/user/delete/{{ $user->id }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="bi bi-trash me-2"></i>
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
 
                     </div>

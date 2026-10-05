@@ -7,9 +7,16 @@
     <div class="container mt-4">
 
         <h2 class="mb-4">Edit Barang Keluar</h2>
+        
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
-        <form action="/barang-keluar/edit/{{ $barangKeluar->id }}" method="POST" id="formEdit">
+        <form action="/barang-keluar/update/{{ $barangKeluar->id }}" method="POST" id="formEdit">
             @csrf
+            @method('PUT')
 
             <div class="mb-3">
                 <label class="form-label">Barang</label>
@@ -33,8 +40,7 @@
                 <select name="gudang_id" class="form-select">
 
                     @foreach ($gudang as $item)
-                        <option value="{{ $item->id }}"
-                            {{ $barangKeluar->gudang_id == $item->id ? 'selected' : '' }}>
+                        <option value="{{ $item->id }}" {{ $barangKeluar->gudang_id == $item->id ? 'selected' : '' }}>
 
                             {{ $item->nama_gudang }}
 
@@ -53,7 +59,8 @@
             <div class="mb-3">
                 <label class="form-label">Tanggal Masuk</label>
 
-                <input type="date" name="tanggal_keluar" class="form-control" value="{{ $barangKeluar->tanggal_keluar }}">
+                <input type="date" name="tanggal_keluar" class="form-control"
+                    value="{{ $barangKeluar->tanggal_keluar }}">
             </div>
 
             <button type="submit" class="btn btn-primary" id="btnSimpan">
@@ -64,15 +71,15 @@
                 Kembali
             </a>
 
-            </form>
-            <script>
-                document.getElementById('formEdit').addEventListener('submit', function() {
-                    const button = document.getElementById('btnSimpan');
+        </form>
+        <script>
+            document.getElementById('formEdit').addEventListener('submit', function() {
+                const button = document.getElementById('btnSimpan');
 
-                    button.disabled = true;
-                    button.innerText = 'Menyimpan...';
-                });
-            </script>
+                button.disabled = true;
+                button.innerText = 'Menyimpan...';
+            });
+        </script>
 
     </div>
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\UserController;
-
+use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
 //semua route wajib login\\
@@ -108,13 +108,19 @@ Route::post('/barang-keluar/tambah', [BarangKeluarController::class, 'store']);
 
 Route::get('/barang-keluar/edit/{id}', [BarangKeluarController::class, 'edit']); 
 
+Route::put('/barang-keluar/update/{id}', [BarangKeluarController::class, 'update']);
+
 Route::delete('/barang-keluar/delete/{id}', [BarangKeluarController::class, 'destroy']); 
 
 
 ////PEMBATAS\\\\\\\
 
 Route::get('/user', [UserController::class, 'index']);
-
+Route::get('/user/tambah', [UserController::class, 'create']);
+Route::post('/user/tambah', [UserController::class, 'store']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::put('/user/update/{id}', [UserController::class, 'update']);
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 });
 
 //

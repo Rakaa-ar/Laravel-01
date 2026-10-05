@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\BarangKeluar;
 use App\Models\Barang;
@@ -11,50 +12,50 @@ class BarangKeluarController extends Controller
 {
     public function index()
     {
-        $barangKeluars = BarangKeluar::with(['barang','gudang'])->paginate(5);
+        $barangKeluars = BarangKeluar::with(['barang', 'gudang'])->paginate(5);
 
         return view('barang_keluar.index', compact('barangKeluars'));
     }
 
     public function create()
     {
-        $barangs = Barang::all();   
+        $barangs = Barang::all();
         $gudang = Gudang::all();
 
         return view('barang_keluar.tambah', compact('barangs', 'gudang'));
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'barang_id' => 'required',
-        'gudang_id' => 'required',
-        'jumlah' => 'required|integer|min:1',
-        'tanggal_keluar' => 'required|date',
-    ]);
+    {
+        $request->validate([
+            'barang_id' => 'required',
+            'gudang_id' => 'required',
+            'jumlah' => 'required|integer|min:1',
+            'tanggal_keluar' => 'required|date',
+        ]);
 
-    $barang = Barang::findOrFail($request->barang_id);
+        $barang = Barang::findOrFail($request->barang_id);
 
-    // Cek stok cukup
-    if ($barang->stok < $request->jumlah) {
-        return back()->with('error', 'Stok barang tidak mencukupi');
+        // Cek stok cukup
+        if ($barang->stok < $request->jumlah) {
+            return back()->with('error', 'Stok barang tidak mencukupi');
+        }
+
+        // Kurangi stok
+        $barang->stok -= $request->jumlah;
+        $barang->save();
+
+        // Simpan barang keluar
+        BarangKeluar::create([
+            'barang_id' => $request->barang_id,
+            'gudang_id' => $request->gudang_id,
+            'jumlah' => $request->jumlah,
+            'tanggal_keluar' => $request->tanggal_keluar,
+        ]);
+
+        return redirect('/barang-keluar')
+            ->with('success', 'Barang Berhasil Di Keluarkan');
     }
-
-    // Kurangi stok
-    $barang->stok -= $request->jumlah;
-    $barang->save();
-
-    // Simpan barang keluar
-    BarangKeluar::create([
-        'barang_id' => $request->barang_id,
-        'gudang_id' => $request->gudang_id,
-        'jumlah' => $request->jumlah,
-        'tanggal_keluar' => $request->tanggal_keluar,
-    ]);
-
-    return redirect('/barang-keluar')
-        ->with('success', 'Barang Berhasil Di Keluarkan');
-}
     public function edit($id)
     {
         $barangKeluar = BarangKeluar::findOrFail($id);
@@ -63,10 +64,11 @@ class BarangKeluarController extends Controller
         $gudang = Gudang::all();
 
         return view('barang_keluar.edit', compact('barangKeluar', 'barangs', 'gudang'));
-
     }
 
-    public function update(Request $request,$id)
+
+
+    public function update(Request $request, $id)
     {
         $request->validate([
             'barang_id' => 'required',
@@ -76,23 +78,23 @@ class BarangKeluarController extends Controller
         ]);
 
         $barangKeluar = BarangKeluar::findOrFail($id);
+        $barangLama = Barang::findOrFail($barangKeluar->barang_id);
 
-        $barangLama = Barang::findOrfail($barangKeluar->barang_id);
         $barangLama->stok += $barangKeluar->jumlah;
         $barangLama->save();
 
-        //ambil barang yang mau di pilih
-        $barangBaru = Barang::findOrfail($request->barang_id);
+        // Ambil barang yang mau dipilih
+        $barangBaru = Barang::findOrFail($request->barang_id);
 
         if ($barangBaru->stok < $request->jumlah) {
-            //kalo engga cukup balikin ke semula
+            // Kembalikan stok jika tidak mencukupi
             $barangBaru->stok -= $barangKeluar->jumlah;
             $barangLama->save();
 
             return back()->with('eror', 'Stok Tidak Mencukupi');
         }
 
-        //kurangi stok dengan jumlah baru
+        // Kurangi stok dengan jumlah baru
         $barangBaru->stok -= $request->jumlah;
         $barangBaru->save();
 
@@ -101,11 +103,9 @@ class BarangKeluarController extends Controller
             'gudang_id' => $request->gudang_id,
             'jumlah' => $request->jumlah,
             'tanggal_keluar' => $request->tanggal_keluar,
-
         ]);
 
         return redirect('/barang-keluar')->with('success', 'Data Berhasil Di Update');
-
     }
 
     public function destroy($id)

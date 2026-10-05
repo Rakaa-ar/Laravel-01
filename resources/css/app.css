@@ -204,3 +204,8 @@ footer {
     border-color: #26324a;
     color: #6b7280;
 }
+
+.card:has(.dropdown-menu.show) {
+    position: relative;
+    z-index: 10;
+}
