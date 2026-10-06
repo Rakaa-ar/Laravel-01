@@ -127,6 +127,9 @@ Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 Route::get('pelanggan', [PelangganController::class, 'index']);
 Route::get('pelanggan/tambah', [PelangganController::class, 'create']);
 Route::post('pelanggan/tambah', [PelangganController::class, 'store']);
+Route::get('/pelanggan/edit/{id}', [PelangganController::class, 'edit']);
+Route::put('/pelanggan/update/{id}', [PelangganController::class, 'update']);
+Route::delete('/pelanggan/delete/{id}', [PelangganController::class, 'destroy']);
 });
 
 //

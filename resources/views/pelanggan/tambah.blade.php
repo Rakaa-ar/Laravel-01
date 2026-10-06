@@ -82,9 +82,8 @@
         </div>
 
     </div>
-    
-    </div>
 
+    </div>
     <script>
         document.getElementById('formTambah').addEventListener('submit', function() {
             const button = document.getElementById('btnSimpan');

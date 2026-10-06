@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="container mt-4">
-      
+
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -61,7 +61,37 @@
                                     <td>{{ $pelanggan->alamat ?? '-' }}</td>
                                     <td>
                                         {{-- Nanti kita isi Edit & Hapus --}}
-                                        <span class="text-muted">-</span>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-secondary" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+
+                                            <ul class="dropdown-menu">
+
+                                                <li>
+                                                    <a class="dropdown-item" href="/pelanggan/edit/{{ $pelanggan->id }}">
+                                                        <i class="bi bi-pencil me-2"></i>
+                                                        Edit
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <form action="/pelanggan/delete/{{ $pelanggan->id }}" method="POST"
+                                                        onsubmit="return confirm('Yakin ingin menghapus pelanggan ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit" class="dropdown-item text-danger">
+                                                            <i class="bi bi-trash me-2"></i>
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @empty
@@ -73,6 +103,9 @@
                             @endforelse
                         </tbody>
                     </table>
+                    <div class="mt-4">
+                        {{ $pelanggans->onEachSide(2)->links() }}
+                    </div>
                 </div>
 
             </div>
