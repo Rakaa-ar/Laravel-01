@@ -14,7 +14,7 @@
                     Tambahkan satuan barang baru
                 </p>
 
-                <form action="/satuan/tambah" method="POST">
+                <form action="/satuan/tambah" method="POST" id="formTambah">
                     @csrf
 
                     <div class="mb-3">
@@ -32,15 +32,16 @@
                     </a>
 
                 </form>
-                <script>
-                    document.querySelector('form').addEventListener('submit', function() {
-                        document.getElementById('btnSimpan').disabled = true;
-                        document.getElementById('btnSimpan').innerText = 'Menyimpan...';
-                    });
-                </script>
-
             </div>
         </div>
 
     </div>
+    <script>
+        document.getElementById('formTambah').addEventListener('submit', function() {
+            const button = document.getElementById('btnSimpan');
+
+            button.disabled = true;
+            button.innerText = 'Menyimpan...';
+        });
+    </script>
 @endsection

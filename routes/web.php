@@ -10,6 +10,7 @@ use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PelangganController;
 use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
@@ -121,6 +122,11 @@ Route::post('/user/tambah', [UserController::class, 'store']);
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::put('/user/update/{id}', [UserController::class, 'update']);
 Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
+
+///PEMBATAS\\\
+Route::get('pelanggan', [PelangganController::class, 'index']);
+Route::get('pelanggan/tambah', [PelangganController::class, 'create']);
+Route::post('pelanggan/tambah', [PelangganController::class, 'store']);
 });
 
 //

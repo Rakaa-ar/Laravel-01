@@ -6,7 +6,7 @@
     <div class="container">
         <h2>Tambah User</h2>
 
-        <form action="/user/tambah" method="POST">
+        <form action="/user/tambah" method="POST" id="formTambah">
             @csrf
 
             <div class="mb-3">
@@ -58,7 +58,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="btnSimpan">
                 Simpan User
             </button>
 
@@ -67,5 +67,13 @@
             </a>
         </form>
     </div>
+    <script>
+        document.getElementById('formTambah').addEventListener('submit', function() {
+            const button = document.getElementById('btnSimpan');
+
+            button.disabled = true;
+            button.innerText = 'Menyimpan...';
+        });
+    </script>
 @endsection
 

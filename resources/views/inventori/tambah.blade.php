@@ -29,7 +29,7 @@
                     </div>
                 @endif
 
-                <form action="/inventori/tambah" method="POST">
+                <form action="/inventori/tambah" method="POST" id="formTambah">
                     @csrf
 
                     <div class="mb-3">
@@ -89,13 +89,6 @@
                     </a>
 
                 </form>
-                <script>
-                    document.querySelector('form').addEventListener('submit', function() {
-                        document.getElementById('btnSimpan').disabled = true;
-                        document.getElementById('btnSimpan').innerText = 'Menyimpan...';
-                    });
-                </script>
-
             </div>
 
         </div>
@@ -117,7 +110,13 @@
                 harga.value = harga.value.replace(/\D/g, '');
             });
         </script>
-
     </div>
+    <script>
+        document.getElementById('formTambah').addEventListener('submit', function() {
+            const button = document.getElementById('btnSimpan');
 
+            button.disabled = true;
+            button.innerText = 'Menyimpan...';
+        });
+    </script>
 @endsection

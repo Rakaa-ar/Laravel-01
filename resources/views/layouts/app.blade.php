@@ -76,6 +76,13 @@
                                     <i class="bi bi-tags me-2"></i>
                                     Kategori
                                 </a>
+                            </li> 
+
+                            <li>
+                                <a class="dropdown-item" href="/pelanggan">
+                                    <i class="bi bi-person-plus me-2"></i>
+                                    Pelanggan 
+                                </a>
                             </li>
 
                             <li>
