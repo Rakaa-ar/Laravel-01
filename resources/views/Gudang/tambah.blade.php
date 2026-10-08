@@ -8,7 +8,7 @@
 
         <h2 class="mb-4">Tambah Data Gudang</h2>
 
-        <form action="/gudang/tambah" method="POST">
+        <form action="/gudang/tambah" method="POST" id ="formTambah">
             @csrf
 
             <div class="mb-3">
@@ -32,12 +32,13 @@
                 Kembali
             </a>
         </form>
-        <script>
-            document.querySelector('form').addEventListener('submit', function() {
-                document.getElementById('btnSimpan').disabled = true;
-                document.getElementById('btnSimpan').innerText = 'Menyimpan...';
-            });
-        </script>
     </div>
+    <script>
+        document.getElementById('formTambah').addEventListener('submit', function() {
+            const button = document.getElementById('btnSimpan');
 
+            button.disabled = true;
+            button.innerText = 'Menyimpan...';
+        });
+    </script>
 @endsection
