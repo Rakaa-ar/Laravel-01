@@ -11,6 +11,7 @@ use App\Http\Controllers\GudangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanController;
 use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
@@ -130,6 +131,14 @@ Route::post('pelanggan/tambah', [PelangganController::class, 'store']);
 Route::get('/pelanggan/edit/{id}', [PelangganController::class, 'edit']);
 Route::put('/pelanggan/update/{id}', [PelangganController::class, 'update']);
 Route::delete('/pelanggan/delete/{id}', [PelangganController::class, 'destroy']);
+
+///PENJUALAN\\\
+Route::get('penjualan', [PenjualanController::class, 'index']);
+Route::get('penjualan/tambah', [PenjualanController::class, 'create']);
+Route::post('penjualan/tambah', [PenjualanController::class, 'store']);
+Route::get('/penjualan/edit/{id}', [PenjualanController::class, 'edit']);
+Route::put('/penjualan/update/{id}', [PenjualanController::class, 'update']);
+Route::delete('/penjualan/delete/{id}', [PenjualanController::class, 'destroy']);
 });
 
 //

@@ -76,12 +76,12 @@
                                     <i class="bi bi-tags me-2"></i>
                                     Kategori
                                 </a>
-                            </li> 
+                            </li>
 
                             <li>
                                 <a class="dropdown-item" href="/pelanggan">
                                     <i class="bi bi-person-plus me-2"></i>
-                                    Pelanggan 
+                                    Pelanggan
                                 </a>
                             </li>
 
@@ -95,6 +95,13 @@
                                 <i class="bi bi-rulers me-2"></i>
                                 Satuan
                             </a>
+                    </li> 
+
+                    <li>
+                        <a class="dropdown-item" href="/penjualan">
+                            <i class="bi bi-cart-check me-2"></i>
+                            Penjualan
+                        </a>
                     </li>
 
                     <li>

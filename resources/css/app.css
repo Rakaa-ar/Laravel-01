@@ -209,3 +209,10 @@ footer {
     position: relative;
     z-index: 10;
 }
+/* Prefix Rupiah di form penjualan */
+.rupiah-prefix {
+    background-color: #111318;
+    color: #f1f1f1;
+    border: 1px solid #2d2d35;
+}
+

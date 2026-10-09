@@ -8,7 +8,7 @@
 
         <h2 class="mb-4">Tambah Barang Keluar</h2>
 
-        <form action={{ url('/barang-keluar/tambah')}} method="POST">
+        <form action={{ url('/barang-keluar/tambah')}} method="POST" id="formTambah">
             @csrf
 
             <div class="mb-3">
@@ -58,14 +58,13 @@
             </a>
 
         </form>
-
-        <script>
-            document.querySelector('form').addEventListener('submit', function() {
-                document.getElementById('btnSimpan').disabled = true;
-                document.getElementById('btnSimpan').innerText = 'Menyimpan...';
-            });
-        </script>
-
     </div>
+    <script>
+        document.getElementById('formTambah').addEventListener('submit', function() {
+            const button = document.getElementById('btnSimpan');
 
+            button.disabled = true;
+            button.innerText = 'Menyimpan...';
+        });
+    </script>
 @endsection
