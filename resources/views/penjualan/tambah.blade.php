@@ -54,7 +54,7 @@
                                 <tbody id="detailBarang">
                                     <tr>
                                         <td>
-                                            <select name="barang_id" class="form-select" id="barang_id" required>
+                                            <select name="barang_id[]" class="form-select barang-select" required>
                                                 <option value="">-- Pilih Barang --</option>
                                                 @foreach ($barangs as $barang)
                                                     <option value="{{ $barang->id }}" data-harga="{{ $barang->harga }}">
@@ -64,15 +64,15 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="number" name="jumlah" id="jumlah" class="form-control"
+                                            <input type="number" name="jumlah[]" class="form-control jumlah-input"
                                                 value="1" min="1" required>
                                         </td>
 
-                                        <td id="hargaBarang">
+                                        <td class="harga-barang">
                                             Rp 0
                                         </td>
 
-                                        <td id="subtotalBarang">
+                                        <td class="subtotal-barang">
                                             Rp 0
                                         </td>
 
@@ -85,7 +85,8 @@
 
                                                 <ul class="dropdown-menu">
                                                     <li>
-                                                        <button type="button" class="dropdown-item text-danger">
+                                                        <button type="button"
+                                                            class="dropdown-item text-danger btn-hapus-barang">
                                                             <i class="bi bi-trash me-2"></i>
                                                             Hapus
                                                         </button>
@@ -173,30 +174,65 @@
             button.innerText = 'Menyimpan...';
         });
 
-        const barangSelect = document.getElementById('barang_id');
-        const jumlahInput = document.getElementById('jumlah');
+        const detailBarang = document.getElementById('detailBarang');
+        const btnTambahBarang = document.getElementById('btnTambahBarang');
 
-        function hitungSubtotal() {
-            const selectedOption = barangSelect.options[barangSelect.selectedIndex];
+        function hitungTotal() {
+            let total = 0;
 
-            const harga = Number(selectedOption.dataset.harga || 0);
-            const jumlah = Number(jumlahInput.value || 0);
-            const subtotal = harga * jumlah;
+            detailBarang.querySelectorAll('tr').forEach(function(row) {
+                const select = row.querySelector('.barang-select');
+                const jumlah = row.querySelector('.jumlah-input');
+                const harga = Number(
+                    select.options[select.selectedIndex]?.dataset.harga || 0
+                );
 
-            document.getElementById('hargaBarang').innerText =
-                'Rp ' + harga.toLocaleString('id-ID');
+                const subtotal = harga * Number(jumlah.value || 0);
 
-            document.getElementById('subtotalBarang').innerText =
-                'Rp ' + subtotal.toLocaleString('id-ID');
+                row.querySelector('.harga-barang').textContent =
+                    'Rp ' + harga.toLocaleString('id-ID');
 
-            document.getElementById('totalPenjualan').innerText =
-                'Rp ' + subtotal.toLocaleString('id-ID');
+                row.querySelector('.subtotal-barang').textContent =
+                    'Rp ' + subtotal.toLocaleString('id-ID');
 
-            document.getElementById('totalInput').value = subtotal;
+                total += subtotal;
+            });
+
+            document.getElementById('totalPenjualan').textContent =
+                'Rp ' + total.toLocaleString('id-ID');
+
+            document.getElementById('totalInput').value = total;
         }
 
-        barangSelect.addEventListener('change', hitungSubtotal);
-        jumlahInput.addEventListener('input', hitungSubtotal);
-        hitungSubtotal();
+        function pasangEvent(row) {
+            row.querySelector('.barang-select')
+                .addEventListener('change', hitungTotal);
+
+            row.querySelector('.jumlah-input')
+                .addEventListener('input', hitungTotal);
+
+            row.querySelector('.btn-hapus-barang')
+                .addEventListener('click', function() {
+                    if (detailBarang.querySelectorAll('tr').length > 1) {
+                        row.remove();
+                        hitungTotal();
+                    }
+                });
+        }
+
+        btnTambahBarang.addEventListener('click', function() {
+            const barisPertama = detailBarang.querySelector('tr');
+            const barisBaru = barisPertama.cloneNode(true);
+
+            barisBaru.querySelector('.barang-select').selectedIndex = 0;
+            barisBaru.querySelector('.jumlah-input').value = 1;
+
+            detailBarang.appendChild(barisBaru);
+            pasangEvent(barisBaru);
+            hitungTotal();
+        });
+
+        detailBarang.querySelectorAll('tr').forEach(pasangEvent);
+        hitungTotal();
     </script>
 @endsection

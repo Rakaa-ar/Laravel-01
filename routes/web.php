@@ -139,6 +139,7 @@ Route::post('penjualan/tambah', [PenjualanController::class, 'store']);
 Route::get('/penjualan/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/penjualan/update/{id}', [PenjualanController::class, 'update']);
 Route::delete('/penjualan/delete/{id}', [PenjualanController::class, 'destroy']);
+Route::get('/penjualan/detail/{id}', [PenjualanController::class, 'show']);
 });
 
 //

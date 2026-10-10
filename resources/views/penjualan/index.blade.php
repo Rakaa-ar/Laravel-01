@@ -58,7 +58,7 @@
 
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="dropdown-item" href="#">
+                                                    <a class="dropdown-item" href="/penjualan/detail/{{ $penjualan->id }}">
                                                         <i class="bi bi-eye me-2"></i>
                                                         Detail
                                                     </a>
