@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetailPenjualan extends Model
 {
     protected $fillable = [
-        'penjualan_id',
+        'penjualan_Id',
         'barang_id',
         'jumlah',
         'harga',
@@ -16,7 +16,7 @@ class DetailPenjualan extends Model
 
     public function penjualan()
     {
-        return $this->belongsTo(Penjualan::class);
+        return $this->belongsTo(Penjualan::class, 'penjualan_Id');
     }
 
     public function barang()

@@ -32,71 +32,138 @@ class PenjualanController extends Controller
             'pelanggan_id' => 'required|exists:pelanggans,id',
             'tanggal_penjualan' => 'required|date',
             'barang_id' => 'required|array|min:1',
-            'barang_id.*' => 'required|exists:barangs,id',
+            'barang_id.*' => 'required|distinct|exists:barangs,id',
             'jumlah' => 'required|array|min:1',
             'jumlah.*' => 'required|integer|min:1',
         ]);
 
         DB::transaction(function () use ($request) {
             $total = 0;
-
             $penjualan = Penjualan::create([
                 'pelanggan_id' => $request->pelanggan_id,
                 'tanggal_penjualan' => $request->tanggal_penjualan,
                 'total' => 0,
-
             ]);
 
             foreach ($request->barang_id as $index => $barangId) {
-                $barang = Barang::findOrFail($barangId);
-                $jumlah = $request->jumlah[$index];
+                $barang = Barang::whereKey($barangId)
+                    ->lockForUpdate()
+                    ->firstOrFail();
+
+                $jumlah = (int) $request->jumlah[$index];
+
+                if ($barang->stok < $jumlah) {
+                    throw \Illuminate\Validation\ValidationException::withMessages([
+                        'jumlah' => "Stok {$barang->nama_barang} tidak mencukupi. Stok tersedia: {$barang->stok}.",
+                    ]);
+                }
+
                 $harga = $barang->harga;
                 $subtotal = $harga * $jumlah;
 
                 DetailPenjualan::create([
-                    'penjualan_id' => $penjualan->id,
+                    'penjualan_Id' => $penjualan->id,
                     'barang_id' => $barang->id,
                     'jumlah' => $jumlah,
                     'harga' => $harga,
                     'subtotal' => $subtotal,
                 ]);
+
+                $barang->decrement('stok', $jumlah);
                 $total += $subtotal;
             }
+
             $penjualan->update([
                 'total' => $total,
             ]);
         });
 
-        return redirect('/penjualan')->with('success', 'Penjualan Berhasil Di Tambahkan');
+        return redirect('/penjualan')
+            ->with('success', 'Penjualan berhasil ditambahkan dan stok diperbarui.');
     }
+
 
     public function edit($id)
     {
-        $penjualan = Penjualan::findOrFail($id);
-        $pelanggans = Pelanggan::all();
+        $penjualan = Penjualan::with('detailPenjualans.barang')
+            ->findOrFail($id);
 
-        return view('penjualan.edit', compact('penjualan', 'pelanggans'));
+        $pelanggans = Pelanggan::all();
+        $barangs = Barang::all();
+
+        return view('penjualan.edit', compact(
+            'penjualan',
+            'pelanggans',
+            'barangs'
+        ));
     }
 
     public function update(Request $request, $id)
     {
-        $request->merge([
-            'total' => str_replace('.', '', $request->total),
-        ]);
-
         $request->validate([
             'pelanggan_id' => 'required|exists:pelanggans,id',
             'tanggal_penjualan' => 'required|date',
-            'total' => 'required|numeric|min:0',
+            'barang_id' => 'required|array|min:1',
+            'barang_id.*' => 'required|distinct|exists:barangs,id',
+            'jumlah' => 'required|array|min:1',
+            'jumlah.*' => 'required|integer|min:1',
         ]);
 
-        $penjualan = Penjualan::findOrFail($id);
+        DB::transaction(function () use ($request, $id) {
+            $penjualan = Penjualan::findOrFail($id);
+            //TAMBAHKAN: Ambil detail penjualan lama 
+            $detailLama = DetailPenjualan::where(
+                'penjualan_Id',
+                $penjualan->id)->get();  
+            
+            //Tambahkan: kembalikan stok dari penjualan lama
+            foreach ($detailLama as $detail) {
+                $barang = Barang::findOrFail($detail->barang_id);
+                $barang ->increment('stok', $detail->jumlah);
+            }
 
-        $penjualan->update([
-            'pelanggan_id' => $request->pelanggan_id,
-            'tanggal_penjualan' => $request->tanggal_penjualan,
-            'total' => $request->total,
-        ]);
+            $detailBaru = [];
+            $total = 0;
+
+            foreach ($request->barang_id as $index => $barangId) {
+                $barang = Barang::findOrFail($barangId);
+                $jumlah = (int) $request->jumlah[$index];
+
+                $harga = $barang->harga;
+                $subtotal = $harga * $jumlah;
+
+                if ($barang->stok < $jumlah) {
+                    throw \Illuminate\Validation\ValidationException::withMessages([
+                        'jumlah' => "Stok {$barang->nama_barang} tidak mencukupi.",
+                    ]);
+                }
+                //kurangin stok sesuai jumlah terbaru
+                $barang->decrement('stok', $jumlah);
+
+                $detailBaru[] = [
+                    'penjualan_Id' => $penjualan->id,
+                    'barang_id' => $barang->id,
+                    'jumlah' => $jumlah,
+                    'harga' => $harga,
+                    'subtotal' => $subtotal,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+
+                $total += $subtotal;
+            }
+
+            $penjualan->update([
+                'pelanggan_id' => $request->pelanggan_id,
+                'tanggal_penjualan' => $request->tanggal_penjualan,
+                'total' => $total,
+            ]);
+
+            DetailPenjualan::where('penjualan_Id', $penjualan->id)
+                ->delete();
+
+            DetailPenjualan::insert($detailBaru);
+        });
 
         return redirect('/penjualan')->with(
             'success',

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container py-3">
 
         {{-- Header --}}
-        <div class="mb-4">
+        <div class="mb-3">
             <h3 class="fw-bold mb-1">Tambah Penjualan</h3>
             <p class="text-muted mb-0">
                 Buat transaksi penjualan baru
@@ -12,7 +12,7 @@
         </div>
 
         {{-- Breadcrumb --}}
-        <div class="mb-4">
+        <div class="mb-3">
             <span class="text-muted">Penjualan</span>
             <span class="mx-2">/</span>
             <span>Tambah Penjualan</span>
