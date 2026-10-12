@@ -12,6 +12,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PembelianController;
 use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
@@ -140,6 +141,10 @@ Route::get('/penjualan/edit/{id}', [PenjualanController::class, 'edit']);
 Route::put('/penjualan/update/{id}', [PenjualanController::class, 'update']);
 Route::delete('/penjualan/delete/{id}', [PenjualanController::class, 'destroy']);
 Route::get('/penjualan/detail/{id}', [PenjualanController::class, 'show']);
+
+////Pembelian\\\\\
+Route::get('pembelian', [PembelianController::class, 'index']);
+Route::get('pembelian/tambah', [PembelianController::class, 'create']);
 });
 
 //
