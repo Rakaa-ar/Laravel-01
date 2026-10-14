@@ -145,6 +145,7 @@ Route::get('/penjualan/detail/{id}', [PenjualanController::class, 'show']);
 ////Pembelian\\\\\
 Route::get('pembelian', [PembelianController::class, 'index']);
 Route::get('pembelian/tambah', [PembelianController::class, 'create']);
+Route::post('pembelian/tambah', [PembelianController::class, 'store']);
 });
 
 //

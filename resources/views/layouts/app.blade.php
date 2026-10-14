@@ -105,6 +105,13 @@
                     </li>
 
                     <li>
+                        <a class="dropdown-item" href="/pembelian">
+                            <i class="bi bi-receipt me-2"></i>
+                            Pembelian
+                        </a>
+                    </li>
+
+                    <li>
                         <a class="dropdown-item" href="/barang-masuk">
                             <i class="bi bi-box-arrow-in-down me-2"></i>
                             Barang Masuk
