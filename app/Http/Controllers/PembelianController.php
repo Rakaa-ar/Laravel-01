@@ -14,9 +14,11 @@ class PembelianController extends Controller
 {
     public function index()
     {
-        $pembelians = Pembelian::with('supplier')
-        ->latest()
-        ->get();
+        $pembelians = Pembelian::with([
+            'supplier',
+            'detailPembelians.barang'
+        ])->latest()->get();
+
 
         return view('pembelian.index', compact('pembelians'));
     }

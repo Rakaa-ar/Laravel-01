@@ -20,7 +20,7 @@ class Pembelian extends Model
         return $this->belongsTo(Supplier::class);
     }
 
-    public function detailPembelian()
+    public function detailPembelians()
     {
         return $this->hasMany(DetailPembelian::class);
     }
