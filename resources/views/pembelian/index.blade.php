@@ -82,6 +82,7 @@
                                             data-catatan="{{ $pembelian->catatan ?? '-' }}"
                                             data-tanggal="{{ \Carbon\Carbon::parse($pembelian->tanggal_pembelian)->format('d-m-Y') }}"
                                             data-total="Rp {{ number_format($pembelian->total, 0, ',', '.') }}"
+                                            data-id="{{ $pembelian->id }}"
                                             data-barang="{{ json_encode(
                                                 $pembelian->detailPembelians->map(function ($detail) {
                                                         return [
@@ -178,6 +179,27 @@
                                 Rp 0
                             </h4>
                         </div>
+                        <hr class="border-secondary">
+
+                        <div class="d-flex gap-2">
+                            <a href="#" id="tombolEditPembelian" data-url="{{ url('/pembelian/edit') }}"
+                                class="btn btn-primary flex-fill">
+                                <i class="bi bi-pencil-square me-1"></i>
+                                Edit
+                            </a>
+
+                            <form id="formHapusPembelian" data-url="{{ url('/pembelian/delete') }}" method="POST"
+                                class="flex-fill" onsubmit="return confirm('Yakin ingin menghapus pembelian ini?')">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger w-100">
+                                    <i class="bi bi-trash me-1"></i>
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
 
                     </div>
                 </div>
@@ -207,6 +229,14 @@
             const barisPembelian = document.querySelectorAll('.baris-pembelian');
 
             function tampilkanInformasi(baris) {
+                const id = baris.dataset.id;
+
+                const tombolEdit = document.getElementById('tombolEditPembelian');
+                const formHapus = document.getElementById('formHapusPembelian');
+
+                tombolEdit.href = `${tombolEdit.dataset.url}/${id}`;
+                formHapus.action = `${formHapus.dataset.url}/${id}`;
+                
                 document.querySelectorAll('.baris-pembelian').forEach(function(item) {
                     item.classList.remove('aktif');
                 });
