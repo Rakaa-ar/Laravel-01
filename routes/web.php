@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\LaporanController;
 use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
@@ -149,6 +150,10 @@ Route::post('pembelian/tambah', [PembelianController::class, 'store']);
 Route::get('/pembelian/edit/{id}', [PembelianController::class, 'edit']);
 Route::put('/pembelian/update/{id}', [PembelianController::class, 'update']);
 Route::delete('/pembelian/delete/{id}', [PembelianController::class, 'destroy']);
+
+
+Route::get('/laporan', [LaporanController::class, 'index'])->name('Laporan.index');
+Route::get('/laporan/pdf', [LaporanController::class, 'cetakPdf'])->name('laporan.pdf');
 });
 
 //
