@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use App\Models\Pembelian;
 use App\Models\Penjualan;
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class LaporanController extends Controller
@@ -19,9 +22,9 @@ class LaporanController extends Controller
 
         if ($tanggal_mulai && $tanggal_akhir) {
 
-            $queryPenjualan->whereBetween('tanggal_penjualan', [$tanggal_mulai . '00:00:00', $tanggal_akhir . '23:59:59']);
-            $queryPembelian->whereBetween('tanggal_pembelian', [$tanggal_mulai . '00:00:00', $tanggal_akhir . '23:59:59']);
-        } 
+            $queryPenjualan->whereBetween('tanggal_penjualan', [$tanggal_mulai . ' 00:00:00', $tanggal_akhir . ' 23:59:59']);
+            $queryPembelian->whereBetween('tanggal_pembelian', [$tanggal_mulai . ' 00:00:00', $tanggal_akhir . ' 23:59:59']);
+        }
 
         $penjualan = $queryPenjualan->latest('tanggal_penjualan')->get();
         $pembelian = $queryPembelian->latest('tanggal_pembelian')->get();
@@ -47,11 +50,18 @@ class LaporanController extends Controller
 
         // Load view khusus buat PDF
         $pdf = Pdf::loadView('laporan.pdf', compact('penjualan', 'pembelian', 'tanggal_mulai', 'tanggal_akhir'));
-        
+
         // Atur ukuran kertas ke A4 (opsional)
         $pdf->setPaper('A4', 'portrait');
 
         return $pdf->download('Laporan-Transaksi.pdf');
-        
+    }
+
+    public function cetakExcel(Request $request)
+    {
+        $tanggal_mulai = $request->input('tanggal_mulai');
+        $tanggal_akhir = $request->input('tanggal_akhir');
+        //panggil class excel yang tadi kita bikin
+        return Excel::download(new LaporanExport($tanggal_mulai, $tanggal_akhir), 'Laporan-Transaksi.xlsx');
     }
 }

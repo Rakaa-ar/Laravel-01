@@ -6,6 +6,10 @@
             <a href="{{ route('laporan.pdf', request()->query()) }}" class="btn btn-danger">
                 Cetak PDF
             </a>
+
+            <a href="{{ route('laporan.excel', request()->query()) }}" class="btn btn-success">
+                Cetak Excel
+            </a>
         </div>
 
         <!-- Form Filter Tanggal -->

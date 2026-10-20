@@ -112,6 +112,13 @@
                     </li>
 
                     <li>
+                        <a class="dropdown-item" href="/laporan">
+                            <i class="bi bi-file-earmark-bar-graph me-2"></i>
+                            Laporan
+                        </a>
+                    </li>
+
+                    <li>
                         <a class="dropdown-item" href="/barang-masuk">
                             <i class="bi bi-box-arrow-in-down me-2"></i>
                             Barang Masuk

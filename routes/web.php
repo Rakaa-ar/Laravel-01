@@ -154,6 +154,7 @@ Route::delete('/pembelian/delete/{id}', [PembelianController::class, 'destroy'])
 
 Route::get('/laporan', [LaporanController::class, 'index'])->name('Laporan.index');
 Route::get('/laporan/pdf', [LaporanController::class, 'cetakPdf'])->name('laporan.pdf');
+Route::get('/laporan/excel', [LaporanController::class, 'cetakExcel'])->name('laporan.excel');
 });
 
 //
