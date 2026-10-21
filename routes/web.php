@@ -14,6 +14,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\DashboardController;
 use PSpell\Config;
 
 Route::middleware('auth')->group(function () {
@@ -155,6 +156,8 @@ Route::delete('/pembelian/delete/{id}', [PembelianController::class, 'destroy'])
 Route::get('/laporan', [LaporanController::class, 'index'])->name('Laporan.index');
 Route::get('/laporan/pdf', [LaporanController::class, 'cetakPdf'])->name('laporan.pdf');
 Route::get('/laporan/excel', [LaporanController::class, 'cetakExcel'])->name('laporan.excel');
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
 });
 
 //
