@@ -27,11 +27,14 @@
 
                 <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/inventori">
-                            Dashboard
-                        </a>
-                    </li>
+                    @if (Auth::check() && Auth::user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">
+                                <i class="bi bi-grid-1x2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                    @endif
 
                     <li class="nav-item">
                         <a class="nav-link" href="/inventori">
@@ -40,12 +43,14 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user">
-                            <i class="bi bi-people"></i>
-                            Data User
-                        </a>
-                    </li>
+                    @if (Auth::check() && Auth::user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user">
+                                <i class="bi bi-people"></i>
+                                Data User
+                            </a>
+                        </li>
+                    @endif
 
                     <li class="nav-item">
                         <form action="/logout" method="POST">
@@ -95,7 +100,7 @@
                                 <i class="bi bi-rulers me-2"></i>
                                 Satuan
                             </a>
-                    </li> 
+                    </li>
 
                     <li>
                         <a class="dropdown-item" href="/penjualan">
@@ -111,12 +116,14 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a class="dropdown-item" href="/laporan">
-                            <i class="bi bi-file-earmark-bar-graph me-2"></i>
-                            Laporan
-                        </a>
-                    </li>
+                    @if (Auth::check() && Auth::user()->role === 'admin')
+                        <li>
+                            <a class="dropdown-item" href="/laporan">
+                                <i class="bi bi-file-earmark-bar-graph me-2"></i>
+                                Laporan
+                            </a>
+                        </li>
+                    @endif
 
                     <li>
                         <a class="dropdown-item" href="/barang-masuk">

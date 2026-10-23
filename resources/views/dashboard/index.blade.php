@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid mt-4">
+    <div class="container mt-4">
         <h3 class="mb-4 text-white">Dashboard Overview</h3>
+        <p class="text-secondary mb-4"><small>Project Laravel Inventori Gudang By Rakapradiva Laksana</small></p>
 
         <div class="row mb-4">
             <!-- Kotak Total Barang -->
             <div class="col-md-3 mb-3">
                 <div class="card bg-dark text-white border-secondary h-100 p-3 shadow-sm">
-                    <h6 class="text-muted mb-2">Total Barang</h6>
+                    <h6 class="mb-2"><i class="bi bi-box-seam me-2"></i>Total Barang</h6>
 
                     <h3 class="fw-bold" style="color: #00e5ff;">{{ $total_barang }}</h3>
                     <small class="text-secondary">Stok tersedia di gudang</small>
@@ -18,8 +19,8 @@
             <!-- Kotak Total Supplier -->
             <div class="col-md-3 mb-3">
                 <div class="card bg-dark text-white border-secondary h-100 p-3 shadow-sm">
-                    <h6 class="text-muted mb-2">Total Supplier</h6>
-
+                    <h6 class ="mb-2"><i class="bi bi-truck me-2"></i>Total Supplier</h6>
+                    
                     <h3 class="fw-bold" style="color: #00e5ff;">{{ $total_supplier }}</h3>
                     <small class="text-secondary">Mitra aktif</small>
                 </div>
@@ -28,7 +29,7 @@
             <!-- Kotak Uang Masuk -->
             <div class="col-md-3 mb-3">
                 <div class="card bg-dark text-white border-secondary h-100 p-3 shadow-sm">
-                    <h6 class="text-muted mb-2">Uang Masuk (Rp)</h6>
+                    <h6 class="mb-2"><i class="bi bi-cash-stack me-2"></i>Uang Masuk (Rp)</h6>
 
                     <h3 class="fw-bold" style="color: #00e5ff;">{{ number_format($uang_masuk, 0, ',', '.') }}</h3>
                     <small class="text-secondary">Total omset keseluruhan</small>
@@ -38,7 +39,7 @@
             <!-- Kotak Uang Keluar -->
             <div class="col-md-3 mb-3">
                 <div class="card bg-dark text-white border-secondary h-100 p-3 shadow-sm">
-                    <h6 class="text-muted mb-2">Uang Keluar (Rp)</h6>
+                    <h6 class="mb-2"><i class="bi bi-cart-dash me-2"></i>Uang Keluar (Rp)</h6>
 
                     <h3 class="fw-bold" style="color: #00e5ff;">{{ number_format($uang_keluar, 0, ',', '.') }}</h3>
                     <small class="text-secondary">Total pengeluaran</small>
