@@ -1,0 +1,11 @@
+//Tambah barang baru post
+POST http://localhost:8000/api/inventori
+Content-Type: application/json
+
+{
+  "nama_barang": "MOUSE WIRELESS",
+  "harga": 150000,
+  "stok": 20,
+  "kategori_id": 3,
+  "satuan_id": 2
+}
