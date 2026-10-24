@@ -16,7 +16,7 @@
     <div class="login-wrapper">
         <div class="login-card">
             <div class="login-title">
-                <h1>Log in</h1>
+                <h1>Login</h1>
             </div>
             <div class="login-subtitle">
                 Log in to your account and seamlessly continue
